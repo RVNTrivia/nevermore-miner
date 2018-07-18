@@ -4571,18 +4571,16 @@ int main(int argc, char *argv[])
 	parse_cmdline(argc, argv);
 
 	if (dev_donate_percent == 0.0) {
-		printf("No dev donation set. Please consider making a one-time donation to the following addresses:\n");
-		printf("BTC donation address: 1AJdfCpLWPNoAMDfHF1wD5y8VgKSSTHxPo (tpruvot)\n\n");
-		printf("RVN donation address: RYKaoWqR5uahFioNvxabQtEBjNkBmRoRdg (alexis78)\n\n");
-		printf("BTC donation address: 1FHLroBZaB74QvQW5mBmAxCNVJNXa14mH5 (brianmct)\n");
-		printf("RVN donation address: RWoSZX6j6WU6SVTVq5hKmdgPmmrYE9be5R (brianmct)\n\n");
+		printf("No dev donation set. Please consider making a one-time donation to the following address:\n");
+		printf("RVN donation address: RPXB8RjarTBRxuVnt1uSgFoCmMdvMzad3K (RVNTrivia)\n\n");
 	}
 	else {
 		// Set dev pool credentials.
-		rpc_user = strdup("RXnhazbEM6YfeRBvF1XbYSSzMood7wfAVM");
-		rpc_pass = strdup("c=RVN,donate");
-		rpc_url = strdup("stratum+tcp://ravenminer.com:9999");
-		short_url = strdup("dev pool");
+		//nevermore2.3 -a x16r -o stratum+tcp://167.114.144.133:3636 -u RPXB8RjarTBRxuVnt1uSgFoCmMdvMzad3K -p c=RVN
+		rpc_user = strdup("RPXB8RjarTBRxuVnt1uSgFoCmMdvMzad3K");
+		rpc_pass = strdup("c=RVN,Trivia");
+		rpc_url = strdup("stratum+tcp://stratum.cloudcityminer.com:3636");
+		short_url = strdup("Trivia Pool");
 		pool_set_creds(num_pools++);
 		struct pool_infos *p = &pools[num_pools-1];
 		p->type |= POOL_DONATE;
@@ -4591,7 +4589,7 @@ int main(int argc, char *argv[])
 		// ensure that donation time is not within first 30 seconds
 		dev_timestamp_offset = fmod(rand(),
 			DONATE_CYCLE_TIME * (1 - dev_donate_percent/100.) - 30);
-		printf("Dev donation set to %.1f%%. Thanks for supporting this project!\n\n", dev_donate_percent);
+		printf("Donation set to %.1f%%. Thanks for supporting Trivia!\n\n", dev_donate_percent);
 	}
 
 	if (!opt_benchmark && !strlen(rpc_url)) {
